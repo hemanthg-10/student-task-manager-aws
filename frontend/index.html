@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Student Task Manager — A modern, streamlined productivity dashboard for college students to organize coursework, deadlines, priorities, and assignments.">
+  <title>Student Task Manager — Organize Your Tasks. Stay Ahead.</title>
+
+  <!-- Apply saved theme immediately — prevents flash of wrong theme -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('stm_theme');
+      var preferred = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', preferred);n
+      document.documentElement.setAttribute('data-bs-theme', preferred);
+    })();
+  </script>
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- App Styles — theme.css FIRST so vars are available to all other sheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/3d-effects.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/interface-scale.css?v=scale-20260930">
+</head>
+
+<body>
+
+  <!-- Sticky Navbar -->
+  <header class="landing-navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="app-brand" id="brandLogo">
+        <div class="brand-icon-box">
+          <i class="bi bi-check2-square"></i>
+        </div>
+        <span>Student<span class="text-primary">TaskManager</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-2" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+
+      <!-- Auth CTAs + Theme Toggle -->
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn-theme-toggle" id="themeToggleLanding" aria-label="Switch to dark mode"
+          title="Switch to dark mode">
+          <i class="bi bi-sun-fill theme-icon-sun"></i>
+          <i class="bi bi-moon-fill theme-icon-moon"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline-primary btn-sm px-3" id="navLoginBtn">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm px-3" id="navRegisterBtn">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 text-center text-lg-start">
+            <div class="hero-animate">
+              <div
+                class="hero-top-badge px-3 py-2 rounded-pill fw-semibold mb-3 d-inline-flex align-items-center gap-2">
+                <i class="bi bi-stars text-primary"></i>
+                <span>Designed for Academic Excellence</span>
+              </div>
+            </div>
+            <h1 class="hero-headline hero-animate">
+              Organize Your Tasks. <br><span class="highlight">Stay Ahead.</span>
+            </h1>
+            <p class="hero-subtext mx-auto mx-lg-0 hero-animate">
+              Stop juggling scattered deadlines and forgotten assignments. Student Task Manager lets you organize
+              assignments, track priorities, set due dates, and monitor your progress — all in one clean workspace.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 hero-animate">
+              <a href="register.html" class="btn btn-primary btn-lg px-4" id="heroGetStartedBtn">
+                <span>Get Started Free</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+              <a href="dashboard.html" class="btn btn-light btn-lg px-4" id="heroDemoBtn">
+                <i class="bi bi-speedometer2 me-1"></i>
+                <span>View Live Demo</span>
+              </a>
+            </div>
+
+            <div
+              class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-4 pt-2 hero-animate"
+              style="font-size: 0.875rem; color: var(--text-muted);">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-shield-check text-success fs-5"></i>
+                <span>No Credit Card Needed</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-cloud-check text-primary fs-5"></i>
+                <span>Cloud Ready</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Preview Card -->
+          <div class="col-lg-6">
+            <div class="hero-preview-card hero-card-animate">
+              <div class="preview-browser-bar">
+                <div class="preview-dot red"></div>
+                <div class="preview-dot yellow"></div>
+                <div class="preview-dot green"></div>
+                <div class="ms-2 ps-1" style="font-size: 0.75rem; color: var(--text-muted);">dashboard.html — Student
+                  Task Overview</div>
+              </div>
+              <div class="p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <h5 class="mb-0 fw-bold" style="color: var(--text-main);">Good morning, Alex 👋</h5>
+                    <small style="color: var(--text-muted);">You have 3 tasks due this week</small>
+                  </div>
+                  <span class="badge-status completed px-2 py-1" style="font-size: 0.75rem;">
+                    <i class="bi bi-check2"></i> 82% On Schedule
+                  </span>
+                </div>
+
+                <!-- Preview mini task list -->
+                <div class="vstack gap-2">
+                  <div class="p-2 rounded-3 d-flex align-items-center justify-content-between"
+                    style="border: 1px solid var(--border-color); background: var(--surface);">
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                      <div>
+                        <div class="fw-semibold small text-decoration-line-through" style="color: var(--text-muted);">
+                          Complete AWS VPC Architecture</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Cloud Computing · Due Sep 10</div>
+                      </div>
+                    </div>
+                    <span class="badge-priority high" style="font-size: 0.68rem;">High</span>
+                  </div>
+
+                  <div class="p-2 rounded-3 d-flex align-items-center justify-content-between"
+                    style="border: 1px solid var(--border-color); background: var(--surface);">
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-circle fs-5" style="color: var(--text-muted);"></i>
+                      <div>
+                        <div class="fw-semibold small" style="color: var(--text-main);">Operating Systems Kernel Lab
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Computer Systems · Due Sep 08</div>
+                      </div>
+                    </div>
+                    <span class="badge-priority high" style="font-size: 0.68rem;">High</span>
+                  </div>
+
+                  <div class="p-2 rounded-3 d-flex align-items-center justify-content-between"
+                    style="border: 1px solid var(--border-color); background: var(--surface);">
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-circle fs-5" style="color: var(--text-muted);"></i>
+                      <div>
+                        <div class="fw-semibold small" style="color: var(--text-main);">Database ER Model Final Proposal
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Databases · Due Sep 15</div>
+                      </div>
+                    </div>
+                    <span class="badge-priority medium" style="font-size: 0.68rem;">Medium</span>
+                  </div>
+                </div>
+
+                <div class="mt-3 pt-2 d-flex justify-content-between align-items-center"
+                  style="border-top: 1px solid var(--border-color);">
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);"><i
+                      class="bi bi-lightning-charge text-warning"></i> 4 of 7 completed</span>
+                  <a href="tasks.html" class="fw-semibold small text-primary">Manage All Tasks &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features" style="background-color: var(--bg-body);">
+      <div class="container py-4">
+        <div class="text-center mx-auto mb-5 reveal" style="max-width: 680px;">
+          <span class="text-primary text-uppercase fw-bold small">Built For Productivity</span>
+          <h2 class="h1 fw-bold mt-1 mb-3" style="color: var(--text-main);">Engineered for Academic Success</h2>
+          <p style="color: var(--text-muted);">Designed to help students beat procrastination, keep assignments visible,
+            and hit every academic milestone on time.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-1">
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-primary">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Task Management</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Easily create, organize, edit, and
+                categorize course assignments and group milestones with full detail.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-2">
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-warning">
+                <i class="bi bi-flag"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Priority Tracking</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Categorize your workload into
+                High, Medium, and Low priorities so you always conquer the most urgent work first.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-3">
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-success">
+                <i class="bi bi-calendar-event"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Deadline Management</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Automatic overdue detection
+                highlights slipping deadlines before penalties hit your GPA.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-4">
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-info">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Progress Dashboard</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Instant visual summary of total
+                assignments, completion rates, and outstanding high-priority tasks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5" id="how-it-works"
+      style="background-color: var(--surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container py-4">
+        <div class="text-center mx-auto mb-5 reveal" style="max-width: 680px;">
+          <span class="text-primary text-uppercase fw-bold small">Simple Workflow</span>
+          <h2 class="h1 fw-bold mt-1 mb-3" style="color: var(--text-main);">How It Works</h2>
+          <p style="color: var(--text-muted);">A frictionless, 4-step workflow that transforms messy syllabi into
+            actionable, daily progress.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-sm-6 col-lg-3 reveal reveal-delay-1">
+            <div class="workflow-step-card">
+              <div class="step-num-badge">1</div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Create Task</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Enter your course assignment,
+                project deliverable, or exam study target.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 reveal reveal-delay-2">
+            <div class="workflow-step-card">
+              <div class="step-num-badge">2</div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Set Priority</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Assign High, Medium, or Low
+                urgency and specify the exact due date.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 reveal reveal-delay-3">
+            <div class="workflow-step-card">
+              <div class="step-num-badge">3</div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Track Progress</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Filter and sort your workload
+                directly on your dashboard.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 reveal reveal-delay-4">
+            <div class="workflow-step-card">
+              <div class="step-num-badge">4</div>
+              <h3 class="h5 fw-bold mb-2" style="color: var(--text-main);">Complete Tasks</h3>
+              <p class="mb-0" style="font-size: 0.9375rem; color: var(--text-muted);">Check off items with one click and
+                watch your metrics update in real-time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="register.html" class="btn btn-primary px-4 py-2">
+            <span>Create Your First Task</span>
+            <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about" style="background-color: var(--bg-body);">
+      <div class="container py-4">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 reveal">
+            <span class="text-primary text-uppercase fw-bold small">Enterprise Architecture</span>
+            <h2 class="h2 fw-bold mt-1 mb-3" style="color: var(--text-main);">Crafted with Clean Standards</h2>
+            <p class="mb-4" style="color: var(--text-muted);">Student Task Manager is structured as a decoupled frontend
+              client prepared for high-availability cloud deployment with a Python Flask REST API and an AWS Application
+              Load Balancer.</p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge"><i class="bi bi-filetype-html text-danger"></i> Semantic HTML5</span>
+              <span class="tech-badge"><i class="bi bi-filetype-css text-primary"></i> Modular CSS3</span>
+              <span class="tech-badge"><i class="bi bi-filetype-js text-warning"></i> Vanilla ES6+ JS</span>
+              <span class="tech-badge"><i class="bi bi-bootstrap" style="color: #7952b3;"></i> Bootstrap 5.3</span>
+              <span class="tech-badge"><i class="bi bi-cloud text-info"></i> AWS ALB Ready</span>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal reveal-delay-2">
+            <div class="p-4 rounded-4"
+              style="background: var(--surface); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <h4 class="fw-bold mb-3 fs-5" style="color: var(--text-main);"><i
+                  class="bi bi-diagram-3 me-2 text-primary"></i>System Architecture Flow</h4>
+              <div class="d-flex flex-column gap-2" style="font-size: 0.875rem;">
+                <div class="p-3 rounded-3"
+                  style="background: var(--surface-alt); border: 1px solid var(--border-color);">
+                  <strong style="color: var(--text-main);">1. Frontend Client:</strong>
+                  <span style="color: var(--text-muted);"> Responsive Vanilla JS UI with centralized API abstraction
+                    layer.</span>
+                </div>
+                <div class="text-center" style="color: var(--text-muted);"><i class="bi bi-arrow-down fs-5"></i></div>
+                <div class="p-3 rounded-3"
+                  style="background: var(--surface-alt); border: 1px solid var(--border-color);">
+                  <strong style="color: var(--text-main);">2. Application Load Balancer:</strong>
+                  <span style="color: var(--text-muted);"> AWS ALB routing requests securely to backend nodes.</span>
+                </div>
+                <div class="text-center" style="color: var(--text-muted);"><i class="bi bi-arrow-down fs-5"></i></div>
+                <div class="p-3 rounded-3"
+                  style="background: var(--surface-alt); border: 1px solid var(--border-color);">
+                  <strong style="color: var(--text-main);">3. Python Flask REST API:</strong>
+                  <span style="color: var(--text-muted);"> Stateless endpoints handling authentication, tasks, and
+                    metrics.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-5">
+          <a href="index.html" class="app-brand mb-2">
+            <div class="brand-icon-box"><i class="bi bi-check2-square"></i></div>
+            <span>Student<span class="text-primary">TaskManager</span></span>
+          </a>
+          <p class="mt-2 mb-0" style="max-width: 360px; font-size: 0.875rem; color: var(--text-muted);">A modern
+            productivity dashboard engineered for college students to effortlessly track academic assignments and
+            priorities.</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h5 class="fw-bold mb-3" style="font-size: 0.9375rem; color: var(--text-main);">Navigation</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html" class="footer-link small">Home</a></li>
+            <li><a href="dashboard.html" class="footer-link small">Dashboard</a></li>
+            <li><a href="tasks.html" class="footer-link small">My Tasks</a></li>
+            <li><a href="profile.html" class="footer-link small">Profile</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-4">
+          <h5 class="fw-bold mb-3" style="font-size: 0.9375rem; color: var(--text-main);">Project & Repository</h5>
+          <p class="mb-2" style="font-size: 0.875rem; color: var(--text-muted);">Built as a portfolio-grade frontend
+            ready for cloud infrastructure integration.</p>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+            class="btn btn-sm btn-light d-inline-flex align-items-center gap-2">
+            <i class="bi bi-github"></i>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </div>
+      <div class="pt-3 d-flex flex-wrap justify-content-between align-items-center"
+        style="border-top: 1px solid var(--border-color); font-size: 0.8125rem; color: var(--text-muted);">
+        <div>&copy; 2026 Student Task Manager. All rights reserved.</div>
+        <div class="d-flex gap-3">
+          <span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Bootstrap 5</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Theme Manager (must load before animations) -->
+  <script src="js/theme.js?v=notifications-20260930"></script>
+  <!-- Animation Utilities -->
+  <script src="js/animations.js"></script>
+  <!-- 3D Motion Engine -->
+  <script src="js/3d-effects.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Student Task Manager — Theme System (theme.css)
+   Light & Dark Mode CSS Custom Properties
+   ========================================================================== */
+
+/* ---- Light Theme (Default) ---- */
+:root {
+  /* Brand */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #eef2ff;
+  --primary-rgb: 79, 70, 229;
+
+  /* Surfaces & Backgrounds */
+  --bg-body: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --surface-elevated: #ffffff;
+
+  /* Text */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-color: #e2e8f0;
+  --border-focus: #c7d2fe;
+  --border-hover: #cbd5e1;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 12px 20px -3px rgba(79, 70, 229, 0.14), 0 4px 6px -4px rgba(79, 70, 229, 0.06);
+
+  /* Status Colors */
+  --success: #10b981;
+  --success-light: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #f59e0b;
+  --warning-light: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #ef4444;
+  --danger-light: #fef2f2;
+  --danger-border: #fecaca;
+  --info: #0ea5e9;
+  --info-light: #f0f9ff;
+
+  /* Priority Badges */
+  --priority-high-bg: #fee2e2;
+  --priority-high-text: #b91c1c;
+  --priority-high-border: #fecaca;
+  --priority-med-bg: #fef3c7;
+  --priority-med-text: #b45309;
+  --priority-med-border: #fde68a;
+  --priority-low-bg: #d1fae5;
+  --priority-low-text: #047857;
+  --priority-low-border: #a7f3d0;
+
+  /* Status Badges */
+  --status-pending-bg: #f1f5f9;
+  --status-pending-text: #475569;
+  --status-pending-border: #e2e8f0;
+  --status-completed-bg: #ecfdf5;
+  --status-completed-text: #065f46;
+  --status-completed-border: #a7f3d0;
+  --status-overdue-bg: #fef2f2;
+  --status-overdue-text: #991b1b;
+  --status-overdue-border: #fecaca;
+
+  /* Sidebar */
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --sidebar-link-hover: #f1f5f9;
+  --sidebar-link-active-bg: #eef2ff;
+  --sidebar-link-active-text: #4f46e5;
+  --sidebar-footer-bg: #ffffff;
+
+  /* Topbar */
+  --topbar-bg: #ffffff;
+  --topbar-border: #e2e8f0;
+
+  /* Table */
+  --table-header-bg: #f8fafc;
+  --table-row-hover: #f8fafc;
+  --table-border: #e2e8f0;
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --input-placeholder: #94a3b8;
+
+  /* Cards */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+
+  /* Modals */
+  --modal-bg: #ffffff;
+  --modal-border: #e2e8f0;
+  --modal-backdrop: rgba(15, 23, 42, 0.5);
+
+  /* Toasts */
+  --toast-bg: #ffffff;
+  --toast-border: #e2e8f0;
+
+  /* Geometry */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Animation timing */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-theme: 0.3s ease;
+
+  /* Font */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---- Dark Theme ---- */
+[data-theme="dark"] {
+  /* Surfaces & Backgrounds */
+  --bg-body: #0d1117;
+  --surface: #161b22;
+  --surface-alt: #1c2333;
+  --surface-elevated: #1e2738;
+
+  /* Text */
+  --text-main: #e6edf3;
+  --text-muted: #8b949e;
+  --text-subtle: #6e7681;
+  --text-inverse: #0d1117;
+
+  /* Borders */
+  --border-color: #30363d;
+  --border-focus: #6366f1;
+  --border-hover: #3d444d;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.35), 0 2px 4px -2px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 24px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -4px rgba(79, 70, 229, 0.2);
+
+  /* Status Colors (Dark-adjusted) */
+  --success-light: rgba(16, 185, 129, 0.12);
+  --success-border: rgba(16, 185, 129, 0.25);
+  --warning-light: rgba(245, 158, 11, 0.12);
+  --warning-border: rgba(245, 158, 11, 0.25);
+  --danger-light: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.25);
+  --info-light: rgba(14, 165, 233, 0.12);
+  --primary-light: rgba(79, 70, 229, 0.15);
+
+  /* Priority Badges (Dark) */
+  --priority-high-bg: rgba(239, 68, 68, 0.15);
+  --priority-high-text: #f87171;
+  --priority-high-border: rgba(239, 68, 68, 0.3);
+  --priority-med-bg: rgba(245, 158, 11, 0.15);
+  --priority-med-text: #fbbf24;
+  --priority-med-border: rgba(245, 158, 11, 0.3);
+  --priority-low-bg: rgba(16, 185, 129, 0.15);
+  --priority-low-text: #34d399;
+  --priority-low-border: rgba(16, 185, 129, 0.3);
+
+  /* Status Badges (Dark) */
+  --status-pending-bg: rgba(100, 116, 139, 0.15);
+  --status-pending-text: #94a3b8;
+  --status-pending-border: rgba(100, 116, 139, 0.3);
+  --status-completed-bg: rgba(16, 185, 129, 0.12);
+  --status-completed-text: #34d399;
+  --status-completed-border: rgba(16, 185, 129, 0.25);
+  --status-overdue-bg: rgba(239, 68, 68, 0.12);
+  --status-overdue-text: #f87171;
+  --status-overdue-border: rgba(239, 68, 68, 0.25);
+
+  /* Sidebar */
+  --sidebar-bg: #161b22;
+  --sidebar-border: #30363d;
+  --sidebar-link-hover: #1c2333;
+  --sidebar-link-active-bg: rgba(79, 70, 229, 0.15);
+  --sidebar-link-active-text: #818cf8;
+  --sidebar-footer-bg: #161b22;
+
+  /* Topbar */
+  --topbar-bg: #161b22;
+  --topbar-border: #30363d;
+
+  /* Table */
+  --table-header-bg: #1c2333;
+  --table-row-hover: #1c2333;
+  --table-border: #30363d;
+
+  /* Inputs */
+  --input-bg: #1c2333;
+  --input-border: #30363d;
+  --input-placeholder: #6e7681;
+
+  /* Cards */
+  --card-bg: #161b22;
+  --card-border: #30363d;
+
+  /* Modals */
+  --modal-bg: #161b22;
+  --modal-border: #30363d;
+  --modal-backdrop: rgba(0, 0, 0, 0.7);
+
+  /* Toasts */
+  --toast-bg: #1e2738;
+  --toast-border: #30363d;
+}
+
+/* ---- Smooth theme transition on page elements ---- */
+body,
+.app-sidebar,
+.app-topbar,
+.landing-navbar,
+.content-card,
+.stat-card,
+.feature-card,
+.auth-card,
+.modal-content,
+.form-control,
+.form-select,
+.toast,
+.custom-table th,
+.custom-table td,
+.mobile-task-card,
+.filter-bar-card,
+.app-footer,
+.hero-preview-card {
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme),
+    box-shadow var(--transition-theme);
+}
+
+/* ---- Theme Toggle Button ---- */
+.btn-theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: var(--surface);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.btn-theme-toggle:hover {
+  background-color: var(--surface-alt);
+  color: var(--text-main);
+  border-color: var(--border-hover);
+}
+
+.btn-theme-toggle .theme-icon-sun,
+.btn-theme-toggle .theme-icon-moon {
+  position: absolute;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+/* Light mode: show sun, hide moon */
+.btn-theme-toggle .theme-icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.btn-theme-toggle .theme-icon-moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+/* Dark mode: show moon, hide sun */
+[data-theme="dark"] .btn-theme-toggle .theme-icon-sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+[data-theme="dark"] .btn-theme-toggle .theme-icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}

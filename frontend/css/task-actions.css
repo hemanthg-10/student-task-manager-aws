@@ -1,0 +1,59 @@
+/* Task action buttons: larger targets, clear labels, and phone-friendly layout. */
+#tasksTableBody .action-btn-group, #tasksMobileCards .action-btn-group { display:flex; align-items:center; gap:.5rem; }
+#tasksTableBody .btn-action, #tasksMobileCards .btn-action {
+ min-width:88px; min-height:42px; padding:.55rem .75rem; border:1px solid transparent;
+ border-radius:12px; display:inline-flex; align-items:center; justify-content:center;
+ gap:.45rem; font:inherit; font-size:.86rem; font-weight:650; line-height:1;
+ white-space:nowrap; cursor:pointer; touch-action:manipulation;
+ transition:transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+#tasksTableBody .btn-action:focus-visible, #tasksMobileCards .btn-action:focus-visible { outline:3px solid var(--border-focus, #7c9cff); outline-offset:2px; }
+#tasksTableBody .btn-action:active, #tasksMobileCards .btn-action:active { transform:translateY(1px) scale(.98); }
+#tasksTableBody .btn-action.action-complete, #tasksMobileCards .btn-action.action-complete { color:var(--success, #16845b); background:var(--success-light, #e8f7ef); border-color:var(--success-border, #b9e7ce); }
+#tasksTableBody .btn-action.action-edit, #tasksMobileCards .btn-action.action-edit { color:var(--primary, #3157c8); background:var(--primary-light, #edf2ff); border-color:var(--primary-border, #cbd7ff); }
+#tasksTableBody .btn-action.action-delete, #tasksMobileCards .btn-action.action-delete { color:var(--danger, #c63838); background:var(--danger-light, #fff0f0); border-color:var(--danger-border, #f2c4c4); }
+#tasksTableBody .btn-action.action-complete::after, #tasksMobileCards .btn-action.action-complete::after { content:'Complete'; }
+#tasksTableBody .btn-action.action-edit::after, #tasksMobileCards .btn-action.action-edit::after { content:'Edit'; }
+#tasksTableBody .btn-action.action-delete::after, #tasksMobileCards .btn-action.action-delete::after { content:'Delete'; }
+@media (hover:hover) {
+ #tasksTableBody .btn-action:hover, #tasksMobileCards .btn-action:hover { transform:translateY(-1px); box-shadow:0 5px 14px rgb(20 35 65 / 12%); }
+}
+@media (max-width:575.98px) {
+ #tasksMobileCards .action-btn-group { width:100%; margin:.35rem 0 0 !important; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
+ #tasksMobileCards .btn-action { min-width:0; width:100%; min-height:44px; padding:.55rem .2rem; gap:.3rem; font-size:.8rem; }
+ #tasksMobileCards .mobile-task-meta { align-items:flex-start; flex-wrap:wrap; }
+}
+#tasksTableBody .task-row-completed .btn-action.action-complete::after, #tasksMobileCards .mobile-task-card.completed .btn-action.action-complete::after { content:"Reopen"; }
+
+/* Flatten the animated 3D table row so task controls receive pointer events. */
+#tasksTableBody tr, #tasksTableBody tr:hover {
+  transform: none !important;
+  transform-style: flat !important;
+}
+#tasksTableBody .action-btn-group {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tasksTableBody .btn-action {
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+  transform-style: flat !important;
+}
+#tasksMobileCards .mobile-task-card,
+#tasksMobileCards .mobile-task-card:hover {
+  transform: none !important;
+  transform-style: flat !important;
+}
+#tasksMobileCards .action-btn-group {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tasksMobileCards .btn-action {
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+  transform-style: flat !important;
+}

@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Student Task Manager — Authentication Styles (auth.css)
+   Uses CSS variables from theme.css — dark mode compatible.
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 10% 20%, var(--surface-alt) 0%, var(--bg-body) 90%);
+  transition: background var(--transition-theme);
+}
+
+.auth-header {
+  padding: 1.5rem 0;
+}
+
+.auth-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem 2.25rem;
+  position: relative;
+}
+
+.auth-card-title {
+  font-size: 1.625rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.auth-card-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ---- Input with Icon & Toggle ---- */
+.input-icon-group {
+  position: relative;
+}
+
+.input-icon-group .form-control {
+  padding-left: 2.75rem;
+}
+
+.input-icon-group .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-subtle);
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 5;
+  transition: color var(--transition-fast);
+}
+
+/* Highlight icon on focus */
+.input-icon-group:focus-within .input-icon {
+  color: var(--primary);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+  z-index: 5;
+}
+
+.password-toggle-btn:hover {
+  color: var(--text-main);
+}
+
+/* ---- Password Strength Meter ---- */
+.password-strength-container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.strength-bar-track {
+  height: 5px;
+  background-color: var(--border-color);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.strength-bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.strength-bar-fill.weak  { width: 25%;  background-color: var(--danger);  }
+.strength-bar-fill.fair  { width: 50%;  background-color: var(--warning); }
+.strength-bar-fill.good  { width: 75%;  background-color: var(--info);    }
+.strength-bar-fill.strong{ width: 100%; background-color: var(--success); }
+
+.strength-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---- Password Criteria Checklist ---- */
+.strength-criteria {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.strength-criteria li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.2rem;
+  transition: color 0.25s ease;
+}
+
+.strength-criteria li.met {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.strength-criteria li.met i {
+  color: var(--success);
+}
+
+/* ---- Auth Alert ---- */
+.auth-alert {
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.auth-alert.show {
+  display: flex;
+}
+
+.auth-alert.error {
+  background-color: var(--danger-light);
+  color: var(--status-overdue-text);
+  border: 1px solid var(--danger-border);
+}
+
+.auth-alert.success {
+  background-color: var(--success-light);
+  color: var(--status-completed-text);
+  border: 1px solid var(--success-border);
+}
+
+/* ---- Auth Footer Link ---- */
+.auth-footer-text {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}

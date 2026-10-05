@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Student Task Manager — Responsive Adjustments (responsive.css)
+   ========================================================================== */
+
+/* Breakpoint: <= 1200px */
+@media (max-width: 1200px) {
+  .dashboard-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Breakpoint: <= 991.98px — Tablet & Below (sidebar collapse) */
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .app-sidebar.show-mobile {
+    transform: translateX(0);
+  }
+
+  .app-main {
+    margin-left: 0;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-topbar {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .hero-section {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .hero-headline {
+    font-size: 2.25rem;
+  }
+}
+
+/* Breakpoint: <= 767.98px — Mobile landscape & small tablets */
+@media (max-width: 767.98px) {
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.15rem;
+  }
+
+  .stat-value {
+    font-size: 1.625rem;
+  }
+
+  .stat-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
+  }
+
+  .content-card-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Responsive table → show mobile cards on smaller screens */
+  .table-responsive-desktop {
+    display: none !important;
+  }
+
+  .task-mobile-cards {
+    display: flex !important;
+  }
+
+  .auth-card {
+    padding: 1.75rem 1.25rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .auth-card-title {
+    font-size: 1.35rem;
+  }
+
+  .profile-avatar-large {
+    width: 76px;
+    height: 76px;
+    font-size: 1.75rem;
+    margin-left: 1.25rem;
+    margin-top: -38px;
+  }
+}
+
+/* Breakpoint: <= 575.98px — Mobile Portrait */
+@media (max-width: 575.98px) {
+  .hero-headline {
+    font-size: 1.85rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .filter-bar-card .row > div {
+    margin-bottom: 0.75rem;
+  }
+
+  .filter-bar-card .row > div:last-child {
+    margin-bottom: 0;
+  }
+
+  .action-btn-group {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  /* Reduce animation distance on mobile */
+  .reveal {
+    transform: translateY(12px);
+  }
+}
+
+/* Breakpoint: <= 375px — Compact Mobile */
+@media (max-width: 375px) {
+  body {
+    font-size: 0.875rem;
+  }
+
+  .btn {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.45rem;
+  }
+}
+
+/* ============================================================
+   Reduced Motion — Accessibility override
+   (Also handled in animations.css, repeated here for safety)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .app-sidebar,
+  .app-topbar,
+  .landing-navbar,
+  .content-card,
+  .stat-card,
+  .feature-card,
+  .auth-card,
+  .modal-content,
+  .form-control,
+  .form-select,
+  .toast,
+  .hero-preview-card {
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn-theme-toggle .theme-icon-sun,
+  .btn-theme-toggle .theme-icon-moon {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,6 @@
+/* A modest site-wide scale reduction, independent of browser zoom. */
+html { font-size: 95%; }
+@media (min-width: 992px) {
+  .app-sidebar { width: 250px; }
+  .app-main { margin-left: 250px; }
+}

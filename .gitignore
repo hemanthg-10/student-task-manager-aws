@@ -1,0 +1,51 @@
+# Environment files and credentials
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+.aws/
+**/.aws/
+credentials
+credentials.*
+**/credentials
+**/credentials.*
+*.pem
+*.key
+*.ppk
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+*.secret
+*.secrets
+*secret*
+*credential*
+
+# Dependencies and generated files
+node_modules/
+**/node_modules/
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Logs and temporary files
+*.log
+logs/
+**/logs/
+*.tmp
+*.temp
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

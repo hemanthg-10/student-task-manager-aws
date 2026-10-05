@@ -1,0 +1,407 @@
+/* ==========================================================================
+   Student Task Manager — Animations System (animations.css)
+   Keyframes, entrance classes, micro-interactions, scroll reveal
+   ========================================================================== */
+
+/* ---- Keyframes ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes checkmark {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0;  }
+}
+
+/* ---- Page Entry Animation ---- */
+.page-enter {
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Hero Section Stagger ---- */
+.hero-animate {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-animate:nth-child(1) { animation-delay: 0.05s; }
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.25s; }
+.hero-animate:nth-child(4) { animation-delay: 0.35s; }
+.hero-animate:nth-child(5) { animation-delay: 0.45s; }
+
+.hero-card-animate {
+  opacity: 0;
+  animation: scaleIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* ---- Dashboard Stagger ---- */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.13s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.21s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.29s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.37s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.45s; }
+
+/* ---- Scroll Reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ---- Task Row Animations ---- */
+.task-enter {
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.task-exit {
+  overflow: hidden;
+  animation: taskCollapse 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes taskCollapse {
+  0% {
+    opacity: 1;
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0);
+    max-height: 200px;
+  }
+  50% {
+    opacity: 0.3;
+    transform: perspective(800px) scale3d(0.96, 0.96, 0.96) translateZ(-12px) translateX(6px);
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transform: perspective(800px) scale3d(0.94, 0.94, 0.94) translateZ(-20px) translateX(10px);
+  }
+}
+
+/* ---- Mobile Task Card Animations ---- */
+.mobile-task-card.task-enter {
+  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mobile-task-card.task-exit {
+  animation: taskCollapse 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ---- Filter Transition ---- */
+.task-list-fading {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.task-list-visible {
+  opacity: 1;
+  transition: opacity 0.22s ease;
+}
+
+/* ---- Stat Cards Count Up ---- */
+.stat-value {
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+/* ---- Auth Card Entrance ---- */
+.auth-card {
+  animation: scaleIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Input Focus Glow ---- */
+.form-control,
+.form-select {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+/* ---- Feature Cards hover lift ---- */
+.feature-card {
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.22s ease,
+    background-color var(--transition-theme);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card:hover .feature-icon-box i {
+  animation: pulse 0.5s ease;
+}
+
+/* ---- Workflow Step Cards ---- */
+.workflow-step-card {
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background-color var(--transition-theme);
+}
+
+/* ---- Stat Cards hover ---- */
+.stat-card {
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.22s ease,
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+/* ---- Button Press Effect ---- */
+.btn-primary:active,
+.btn-outline-primary:active {
+  transform: scale(0.97) translateY(0) !important;
+}
+
+/* ---- Sidebar Link ---- */
+.sidebar-link {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.sidebar-link:hover {
+  transform: translateX(2px);
+}
+
+/* ---- Icon Button ---- */
+.icon-btn {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    border-color var(--transition-theme);
+}
+
+.icon-btn:hover {
+  transform: scale(1.06);
+}
+
+/* ---- Action Buttons ---- */
+.btn-action {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.btn-action:hover {
+  transform: scale(1.1);
+}
+
+.btn-action:active {
+  transform: scale(0.95);
+}
+
+/* ---- Badge Status Transition ---- */
+.badge-status,
+.badge-priority {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ---- Toast Slide-in ---- */
+.toast {
+  animation: slideInLeft 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Modal animations ---- */
+.modal.fade .modal-dialog {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+  transform: scale(0.95) translateY(-10px);
+  opacity: 0;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* ---- Skeleton Loading ---- */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-alt) 25%,
+    var(--border-color) 50%,
+    var(--surface-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+  color: transparent !important;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.w-75 { width: 75%; }
+.skeleton-line.w-50 { width: 50%; }
+.skeleton-line.w-25 { width: 25%; }
+
+/* ---- Landing Navbar ---- */
+.landing-navbar {
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    box-shadow 0.25s ease;
+}
+
+/* ---- Empty State Entrance ---- */
+.empty-state-box {
+  animation: fadeIn 0.4s ease both;
+}
+
+/* ---- Brand Icon Hover ---- */
+.brand-icon-box {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.app-brand:hover .brand-icon-box {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+/* ---- Notification Badge Pulse ---- */
+.notification-badge {
+  animation: pulse 2.5s ease infinite;
+}
+
+/* ============================================================
+   Reduced Motion — Accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-animate,
+  .hero-card-animate,
+  .stagger-children > *,
+  .page-enter,
+  .auth-card,
+  .task-enter,
+  .task-exit,
+  .empty-state-box {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .toast {
+    animation: none;
+  }
+}
