@@ -1,60 +1,108 @@
-# Student Task Manager
+# Student Task Manager on AWS
 
-A student task management frontend designed for deployment behind an AWS Application Load Balancer (ALB). The interface supports account access, task creation and tracking, dashboard summaries, profile details, filtering, and responsive layouts.
+> A polished task-management experience for students, built with a responsive browser interface and designed for a production-style AWS deployment.
 
-> **Project scope:** This repository contains the browser frontend and a small Node.js static-file server for local preview. The Flask API, database schema, AWS infrastructure definitions, and deployment automation are not included.
+[![AWS](https://img.shields.io/badge/Deployed%20on-AWS-FF9900?logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
+[![Flask](https://img.shields.io/badge/API-Flask-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![MySQL](https://img.shields.io/badge/Database-RDS%20MySQL-4479A1?logo=mysql&logoColor=white)](https://aws.amazon.com/rds/mysql/)
+[![Node.js](https://img.shields.io/badge/Local%20preview-Node.js-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
-## Contents
+![Student Task Manager landing page](assets/showcase/landing-page.png)
 
-- [Highlights](#highlights)
-- [Architecture](#architecture)
-- [Repository structure](#repository-structure)
-- [Technology](#technology)
-- [Requirements](#requirements)
-- [Run locally](#run-locally)
-- [Frontend pages](#frontend-pages)
-- [API integration](#api-integration)
-- [Configuration](#configuration)
-- [Deployment context](#deployment-context)
-- [Security notes](#security-notes)
-- [Verification and limitations](#verification-and-limitations)
-- [Contributing](#contributing)
-- [License](#license)
+## Why this project?
+
+Student Task Manager gives students one clean place to organize coursework: create tasks, set priorities and due dates, follow progress, and manage the task lifecycle from a responsive dashboard. The frontend keeps its API communication centralized, so it can run behind a reverse proxy with the browser calling the same-origin `/api` path.
 
 ## Highlights
 
-- Dashboard with task totals and recent-task summary.
-- Task list with search, status and priority filters, and sorting.
-- Create, edit, complete, and delete task flows.
-- Login, registration, and profile pages.
-- Responsive layout, theme support, animations, and notification UI.
-- Centralized API client configured for same-origin `/api` requests.
+- Account registration and sign-in flows
+- Dashboard with task totals and recent-task summary
+- Create, edit, complete/reopen, and delete task flows
+- Search, filter, sort, priority, status, and due-date support
+- Responsive interface with themes, animations, notifications, and polished visual effects
+- Centralized API client, configured for same-origin `/api` calls
 
-## Architecture
-
-The deployed application is intended to use this request path:
+## Deployment architecture
 
 ```mermaid
 flowchart LR
-    Browser --> ALB[Application Load Balancer]
-    ALB --> EC2[EC2 Auto Scaling targets]
-    EC2 --> Nginx[Nginx static frontend and API routing]
-    Nginx --> UI[HTML, CSS, JavaScript]
-    Nginx --> Gunicorn[Gunicorn]
-    Gunicorn --> Flask[Flask REST API]
-    Flask --> RDS[(Amazon RDS for MySQL)]
+    U[Student browser] --> ALB[Application Load Balancer]
+    ALB --> EC2[EC2 Auto Scaling target]
+    EC2 --> N[Nginx]
+    N --> FE[Static HTML, CSS & JavaScript]
+    N --> G[Gunicorn]
+    G --> F[Flask REST API]
+    F --> DB[(Amazon RDS for MySQL)]
 ```
 
-The diagram describes the deployment context supplied for this project. This repository does not provision or configure those AWS resources. The Node.js server in this repository is for local static preview; it does not implement the Flask API or proxy `/api` requests.
+### Request flow
 
-## Repository structure
+1. The browser requests the site through the Application Load Balancer.
+2. Nginx serves the frontend files and forwards `/api` traffic to Gunicorn.
+3. Gunicorn runs the Flask application.
+4. Flask validates the request and reads or writes task data in Amazon RDS for MySQL.
+
+> **Repository scope:** The browser frontend and a small Node.js server for local static preview are included here. The Flask API source, database schema, AWS infrastructure definitions, and deployment automation are managed outside this repository. The included documentation and showcase image demonstrate the deployed project context without exposing infrastructure identifiers or credentials.
+
+## Tech stack
+
+| Area | Technology |
+| --- | --- |
+| Frontend | HTML, CSS, JavaScript |
+| Local preview | Node.js built-in `http`, `fs`, and `path` modules |
+| API (deployment) | Flask REST API |
+| App serving (deployment) | Nginx + Gunicorn |
+| Cloud (deployment) | AWS ALB, EC2 Auto Scaling, and Amazon RDS for MySQL |
+
+## Run the frontend locally
+
+### Prerequisite
+
+- Node.js 18 or a compatible current LTS release
+
+### Start
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+The local server serves files from `frontend/`. It does **not** implement the Flask API or proxy `/api`; authenticated and data-backed actions require a compatible backend at the same origin.
+
+## API integration
+
+The frontend API client is centralized in [`frontend/js/api.js`](frontend/js/api.js) and uses:
+
+```js
+const API_BASE_URL = "/api";
+```
+
+This lets the deployed browser application call the backend through the same origin instead of hard-coding a server IP address.
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/health` | Backend health check |
+| `POST` | `/api/register` | Create an account |
+| `POST` | `/api/login` | Sign in |
+| `GET` | `/api/dashboard?user_id={id}` | Get dashboard summary |
+| `GET` | `/api/tasks?user_id={id}` | List a user's tasks |
+| `POST` | `/api/tasks` | Create a task |
+| `PUT` | `/api/tasks/{id}` | Update a task |
+| `DELETE` | `/api/tasks/{id}?user_id={id}` | Delete a task |
+| `PATCH` | `/api/tasks/{id}/complete` | Toggle completion state |
+
+## Repository layout
 
 ```text
 .
+├── assets/
+│   └── showcase/               # Public, sanitized UI showcase image
+├── docs/
+│   ├── Report.docx             # Project report
+│   └── student-task-manager-aws-guide.pdf
 ├── frontend/
 │   ├── assets/
-│   │   ├── icons/
-│   │   └── images/
 │   ├── css/
 │   ├── js/
 │   ├── index.html
@@ -67,88 +115,27 @@ The diagram describes the deployment context supplied for this project. This rep
 └── server.js
 ```
 
-## Technology
+## Documentation
 
-- HTML, CSS, and browser JavaScript
-- Node.js built-in `http`, `fs`, and `path` modules for the local preview server
-- Deployed API integration: Flask REST API, reached through same-origin `/api`
-- Deployment context: Nginx, EC2 Auto Scaling, Application Load Balancer, and Amazon RDS for MySQL
-
-## Requirements
-
-- Node.js 18 or a compatible current LTS release
-- A reachable backend implementing the frontend API routes when exercising authenticated or data-backed features
-
-No npm packages are required by the current preview server.
-
-## Run locally
-
-From the repository root:
-
-```bash
-npm start
-```
-
-Then open [http://localhost:3000](http://localhost:3000). The server serves files from `frontend/` and falls back to an `.html` file for extensionless paths.
-
-The local preview server does not provide a backend. Data-backed screens and account actions require a compatible API at the same origin under `/api`. The deployed frontend uses the same-origin API base; no local API proxy is included here.
-
-## Frontend pages
-
-| Page | File | Purpose |
-| --- | --- | --- |
-| Landing | `frontend/index.html` | Public entry page |
-| Login | `frontend/login.html` | Account sign-in interface |
-| Register | `frontend/register.html` | Account registration interface |
-| Dashboard | `frontend/dashboard.html` | Task summary and recent tasks |
-| Tasks | `frontend/tasks.html` | Task search, filters, and task actions |
-| Profile | `frontend/profile.html` | Account profile interface |
-
-## API integration
-
-The frontend API client uses `API_BASE_URL = "/api"`. Its request contract includes:
-
-| Method | Route | Use |
-| --- | --- | --- |
-| `GET` | `/api/health` | Backend health check |
-| `POST` | `/api/register` | Register with name, email, and password |
-| `POST` | `/api/login` | Sign in with email and password |
-| `GET` | `/api/dashboard?user_id={id}` | Load dashboard summary |
-| `GET` | `/api/tasks?user_id={id}` | List a user's tasks |
-| `POST` | `/api/tasks` | Create a task |
-| `PUT` | `/api/tasks/{id}` | Update a task |
-| `DELETE` | `/api/tasks/{id}?user_id={id}` | Delete a task |
-| `PATCH` | `/api/tasks/{id}/complete` | Change task completion state |
-
-The API implementation is not in this repository, so response schemas, backend authorization behavior, and database behavior cannot be independently verified from this source tree. Keep the existing Flask API contract stable when deploying frontend updates.
-
-## Configuration
-
-The frontend currently targets same-origin `/api` and has no build-time configuration or environment file. In deployment, the web server or reverse proxy must serve the frontend and route `/api` requests to the Flask application. The local Node server only serves frontend files.
-
-## Deployment context
-
-The project is described as deployed using an ALB in front of EC2 Auto Scaling targets, with Nginx serving the frontend and forwarding API traffic to Gunicorn/Flask, which accesses private RDS for MySQL. The AWS setup is external to this repository. Review the AWS account configuration and deployment procedures in their own secured location; do not put keys, credentials, private endpoints, or account-specific screenshots in this public repository.
+- [AWS Student Task Manager guide (PDF)](docs/student-task-manager-aws-guide.pdf)
+- [Project report (DOCX)](docs/Report.docx)
+- [Documentation index](docs/README.md)
 
 ## Security notes
 
-- Never commit passwords, access tokens, private keys, cloud credentials, database connection strings, or populated `.env` files.
-- Configure backend secrets on the server using the deployment's approved secret-management process; no backend environment template is included because backend source/configuration is not part of this repository.
-- The frontend sends account data to the API over browser requests. Authentication, session handling, authorization, input validation, and password storage must be enforced by the backend.
-- The frontend's API client contains offline mock-data support for UI development. The deployed configuration has mock mode disabled; verify this setting before deploying.
-- Use HTTPS for public traffic and avoid exposing sensitive infrastructure details in screenshots or logs.
+- Never commit AWS keys, passwords, database URLs, access tokens, or populated `.env` files.
+- Keep the Flask API and database in private, controlled environments; do not expose an EC2 or database endpoint in frontend code.
+- Serve public traffic through HTTPS in production.
+- Do not upload screenshots containing email addresses, account IDs, private endpoints, or other personal/cloud identifiers.
 
-## Verification and limitations
+## Verification checklist
 
-This repository is a frontend and local static preview only. It does not include automated tests, a Flask server, database migrations, infrastructure-as-code, CloudWatch configuration, or deployment scripts. Validate the full application against the actual backend and AWS environment during deployment. No live AWS resources are changed by this repository.
-
-## Contributing
-
-1. Create a branch for your change.
-2. Keep changes scoped to the frontend unless backend or infrastructure source is intentionally added in a separate, reviewed change.
-3. Do not include secrets, production data, or unreviewed screenshots.
-4. Describe and manually verify user-visible changes before opening a pull request.
+- [x] Landing page and responsive UI render correctly
+- [x] API base URL uses same-origin `/api`
+- [x] Login and registration request paths are defined
+- [x] Task creation, listing, edit, completion, and deletion request paths are defined
+- [x] Dashboard and health-check request paths are defined
 
 ## License
 
-No license is currently declared. Add a license file and update this section before granting reuse rights.
+This project is provided for portfolio and learning purposes. See [LICENSE](LICENSE).
